@@ -4,7 +4,13 @@ import { StoreContext } from '../../../context/storeContext'
 import { assets } from '../../../assets/assets'
 import { useNavigate } from 'react-router-dom'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || ''
+
+const resolveImage = (image) => {
+  if (!image || typeof image !== 'string') return ''
+  if (image.startsWith('http') || image.startsWith('data:') || image.startsWith('/')) return image
+  return API_URL ? `${API_URL}/images/${image}` : `/images/${image}`
+}
 
 const Cart = () => {
   const { food_list, cartItems, removeAllFromCart, getTotalCartAmount, token } = useContext(StoreContext)
@@ -48,7 +54,7 @@ const Cart = () => {
             <React.Fragment key={item._id}>
               <div className='cart-items-item'>
                 <img
-                  src={`${API_URL}/images/${item.image}`}
+                  src={resolveImage(item.image)}
                   alt={item.name}
                 />
                 <p>{item.name}</p>

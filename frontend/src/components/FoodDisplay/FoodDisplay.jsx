@@ -3,14 +3,15 @@ import './FoodDisplay.css'
 import { StoreContext } from '../../context/storeContext'
 import FoodItem from '../Fooditem/Fooditem'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || ''
 
 const resolveImage = (image) => {
   if (!image) return ''
-  // Vite module object from local fallback — use filename directly from assets
   if (typeof image !== 'string') return ''
   if (image.startsWith('http') || image.startsWith('data:') || image.startsWith('/')) return image
-  return `${API_URL}/images/${image}`
+  // Use relative URL — Vite proxy handles /images/* → localhost:4000 in dev
+  // VITE_API_URL handles it in production
+  return API_URL ? `${API_URL}/images/${image}` : `/images/${image}`
 }
 const SkeletonCard = () => (
   <div className='skeleton-card'>
