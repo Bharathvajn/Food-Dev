@@ -5,9 +5,77 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spicy Food</title>
+    <style>
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        transition: opacity 0.5s ease;
+      }
+
+      #splash.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .splash-logo {
+        font-size: 48px;
+        font-weight: 800;
+        color: tomato;
+        letter-spacing: -1px;
+      }
+
+      .splash-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f0f0f0;
+        border-top-color: tomato;
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+      }
+
+      .splash-text {
+        font-size: 14px;
+        color: #aaa;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 0.3px;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+
+    <!-- Splash screen — visible before React loads -->
+    <div id="splash">
+      <div class="splash-logo">🍅 Tomato</div>
+      <div class="splash-spinner"></div>
+      <p class="splash-text">Loading your food...</p>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      // Hide splash once React has mounted into #root
+      const observer = new MutationObserver(() => {
+        if (document.getElementById('root').children.length > 0) {
+          const splash = document.getElementById('splash')
+          splash.classList.add('hide')
+          setTimeout(() => splash.remove(), 500)
+          observer.disconnect()
+        }
+      })
+      observer.observe(document.getElementById('root'), { childList: true })
+    </script>
+
   </body>
 </html>
