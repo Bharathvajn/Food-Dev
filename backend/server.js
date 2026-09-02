@@ -51,10 +51,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: err.message || "Internal Server Error" });
 });
 
-// Only listen in local dev — Vercel/serverless handles this via export default
-if (process.env.NODE_ENV !== "production") {
-  const port = process.env.PORT || 4000;
-  app.listen(port, () => console.log(`Server started on http://localhost:${port}`));
-}
+// Always listen — Render needs app.listen (it's not serverless like Vercel)
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Server started on http://localhost:${port}`));
 
 export default app;
