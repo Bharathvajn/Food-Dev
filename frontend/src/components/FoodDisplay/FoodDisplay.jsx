@@ -3,7 +3,7 @@ import './FoodDisplay.css'
 import { StoreContext } from '../../context/storeContext'
 import FoodItem from '../Fooditem/Fooditem'
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://food-dev-amy0.onrender.com'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 
 const resolveImage = (image) => {
   if (!image) return ''
