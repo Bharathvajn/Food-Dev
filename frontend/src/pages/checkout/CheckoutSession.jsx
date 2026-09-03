@@ -255,7 +255,7 @@ const CheckoutSession = () => {
               </div>
               <div className='tds-info-box'>
                 <p className='tds-info-label'>Amount</p>
-                <p className='tds-info-value'>${amount.toFixed(2)}</p>
+                <p className='tds-info-value'>₹{amount.toFixed(2)}</p>
               </div>
               <p className='tds-message'>
                 This is a test authentication page. In production, your bank would verify your identity here.
@@ -290,7 +290,7 @@ const CheckoutSession = () => {
             <div className='stripe-merchant-logo'>🍅</div>
             <div>
               <p className='stripe-merchant-name'>Tomato Food Delivery</p>
-              <p className='stripe-amount'>${amount.toFixed(2)}</p>
+              <p className='stripe-amount'>₹{amount.toFixed(2)}</p>
             </div>
           </div>
           <p className='stripe-pay-heading'>Food delivery order</p>
@@ -303,9 +303,9 @@ const CheckoutSession = () => {
                 </div>
                 <div className='stripe-item-info'>
                   <span className='stripe-item-name'>{item.name}</span>
-                  <span className='stripe-item-each'>${item.price.toFixed(2)} each</span>
+                  <span className='stripe-item-each'>₹{item.price.toFixed(2)} each</span>
                 </div>
-                <span className='stripe-item-price'>${(item.price * item.quantity).toFixed(2)}</span>
+                <span className='stripe-item-price'>₹{(item.price * item.quantity).toFixed(2)}</span>
               </div>
             ))}
           </div>
@@ -315,9 +315,9 @@ const CheckoutSession = () => {
             </button>
           )}
           <div className='stripe-totals'>
-            <div className='stripe-total-row'><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-            <div className='stripe-total-row'><span>Delivery</span><span>${deliveryFee.toFixed(2)}</span></div>
-            <div className='stripe-total-row stripe-total-final'><span>Total due</span><span>${amount.toFixed(2)}</span></div>
+            <div className='stripe-total-row'><span>Subtotal</span><span>₹{subtotal.toFixed(2)}</span></div>
+            <div className='stripe-total-row'><span>Delivery</span><span>₹{deliveryFee.toFixed(2)}</span></div>
+            <div className='stripe-total-row stripe-total-final'><span>Total due</span><span>₹{amount.toFixed(2)}</span></div>
           </div>
           <div className='stripe-footer'>
             <svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' style={{opacity:0.5}}><rect x='3' y='11' width='18' height='11' rx='2'/><path d='M7 11V7a5 5 0 0 1 10 0v4'/></svg>
@@ -387,7 +387,7 @@ const CheckoutSession = () => {
             <button type='submit' className='stripe-pay-btn' disabled={loading || show3ds}>
               {loading
                 ? <span className='stripe-spinner-wrap'><span className='stripe-spinner' />Processing...</span>
-                : <><IconLock />Pay ${amount.toFixed(2)}</>}
+                : <><IconLock />Pay ₹{amount.toFixed(2)}</>}
             </button>
 
             <p className='stripe-secure-note'>Your payment info is encrypted and secure</p>

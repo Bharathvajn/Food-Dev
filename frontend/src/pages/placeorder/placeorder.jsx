@@ -195,19 +195,19 @@ return (
 
             <div className='order-total-row'>
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
             <hr className='order-divider' />
 
             <div className='order-total-row'>
               <span>Delivery Fee</span>
-              <span>${subtotal > 0 ? DELIVERY_FEE.toFixed(2) : '0.00'}</span>
+              <span>₹{subtotal > 0 ? DELIVERY_FEE.toFixed(2) : '0.00'}</span>
             </div>
             <hr className='order-divider' />
 
             <div className='order-total-row order-total-final'>
               <b>Total</b>
-              <b>${total.toFixed(2)}</b>
+              <b>₹{total.toFixed(2)}</b>
             </div>
 
             <button type='submit' className='order-pay-btn' disabled={cartList.length === 0}>

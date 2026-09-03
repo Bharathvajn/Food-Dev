@@ -97,7 +97,7 @@ const MyOrders = () => {
                   )}
                 </p>
                 <p className='order-total'>
-                  ${Number(order.amount).toFixed(2)} &bull; {order.items.length} item{order.items.length !== 1 ? 's' : ''}
+                  ₹{Number(order.amount).toFixed(2)} &bull; {order.items.length} item{order.items.length !== 1 ? 's' : ''}
                 </p>
               </div>
               <span className={`order-status ${
